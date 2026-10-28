@@ -1,0 +1,28 @@
+// The row's grid, borders, colours and spacing are owned by the parent
+// `.block-before-after` (default/ledger vs `.is-style-split`) — ba-row only
+// ever renders inside before-after. Here we keep just the cell internals
+// shared by both styles.
+.block-ba-row {
+	&__cell {
+		display: flex;
+		align-items: center;
+		gap: var(--space-md); // 12px
+		min-width: 0; // allow the text to ellipsize in the ledger variant
+	}
+
+	&__icon {
+		flex-shrink: 0;
+	}
+
+	&__badge {
+		flex-shrink: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 999px;
+	}
+
+	&__text {
+		min-width: 0;
+	}
+}

@@ -1,0 +1,306 @@
+// =============================================================================
+// Before / After — one block, two native layout styles (Styles panel).
+//   default / .is-style-ledger  → Variant A: heading + compact hairline table.
+//   .is-style-split             → Variant C: heading + soft/navy spotlight panels.
+// Both share the SAME DOM (heading column + before/after rows); the whole look
+// is switched here. Ledger is scoped `:not(.is-style-split)` so it also covers
+// the default style (which WordPress renders without an `is-style-*` class).
+// Row layout is owned here too (ba-row stays neutral).
+// =============================================================================
+
+.block-before-after {
+	padding-top: var(--space-6xl); // 112px (fluid)
+	padding-bottom: var(--space-6xl);
+
+	&__eyebrow {
+		// Styles owned by the universal class .if-eyebrow — do not duplicate.
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 500;
+		letter-spacing: -0.02em;
+
+		em {
+			font-style: italic;
+			font-weight: 400;
+			font-family: var(--font-display);
+			color: var(--primary);
+		}
+	}
+
+	&__label {
+		margin: 0;
+	}
+
+	// Grid children must be allowed to shrink so text can wrap / ellipsize.
+	&__body > *,
+	&__labels > *,
+	.block-ba-row > * {
+		min-width: 0;
+	}
+
+	// -------------------------------------------------------------------------
+	// Shared layout scaffolding
+	// -------------------------------------------------------------------------
+	&__layout {
+		display: grid;
+		gap: 2.5rem; // 40px
+
+		@media (min-width: $md2) {
+			align-items: start;
+		}
+	}
+
+	&__labels,
+	.block-ba-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+// =============================================================================
+// Ledger — Editorial ledger (default style)
+// =============================================================================
+.block-before-after:not(.is-style-split) {
+	// .block-before-after__container {
+	// 	background: var(--canvas-soft);
+	// 	border-radius: 20px;
+	// 	padding: clamp(1.75rem, 3vw, 2.75rem); // 28px → 44px
+	// }
+
+	@media (min-width: $md2) {
+		.block-before-after__layout {
+			grid-template-columns: 0.8fr 1fr;
+		}
+	}
+
+	// Column headers above the table
+	.block-before-after__labels {
+		column-gap: 1.75rem; // 28px
+		padding-bottom: 0.875rem; // 14px
+	}
+
+	.block-before-after__label {
+		font-family: var(--font-display);
+		font-size: var(--text-body-md); // 18px
+
+		&--before {
+			font-weight: 400;
+			color: var(--body-mid);
+		}
+
+		&--after {
+			font-weight: 500;
+			color: var(--ink);
+		}
+	}
+
+	// Hairline rows
+	.block-ba-row {
+		column-gap: 1.75rem; // 28px
+	}
+
+	.block-ba-row__cell {
+		align-items: center;
+		padding: 0.875rem 0; // 14px
+		border-top: 1px solid var(--line);
+		overflow: hidden;
+	}
+
+	.block-ba-row:last-child .block-ba-row__cell {
+		border-bottom: 1px solid var(--line);
+	}
+
+	// "before" — muted, single line, no icon
+	.block-ba-row__icon--before {
+		display: none;
+	}
+
+	.block-ba-row__cell--before {
+		color: var(--body-mid);
+	}
+
+	.block-ba-row__cell .block-ba-row__text {
+		display: block;
+		font-size: var(--text-caption); // 14px
+		line-height: 1.35;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	// "after" — dark check badge + ink text
+	.block-ba-row__badge {
+		width: 20px;
+		height: 20px;
+		background: var(--ink);
+		color: #fff;
+	}
+
+	.block-ba-row__cell--after .block-ba-row__text {
+		font-weight: 500;
+		color: var(--ink);
+	}
+}
+
+// =============================================================================
+// Split — Split spotlight
+// =============================================================================
+.block-before-after.is-style-split {
+	@media (min-width: $md2) {
+		.block-before-after__layout {
+			grid-template-columns: 0.7fr 1.3fr;
+		}
+	}
+
+	// The body paints the two panels behind its columns; content sits on top.
+	.block-before-after__body {
+		position: relative;
+
+		> * {
+			position: relative;
+			z-index: 1;
+		}
+
+		@media (min-width: $md4) {
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				width: calc(50% - 10px);
+				border-radius: 20px;
+				z-index: 0;
+			}
+
+			&::before {
+				left: 0;
+				background: var(--canvas-soft);
+				border: 1px solid var(--line);
+			}
+
+			&::after {
+				right: 0;
+				background: radial-gradient(340px 340px at 88% -12%, rgba(255, 255, 255, 0.12), transparent 60%), var(--gradient-accent);
+			}
+		}
+	}
+
+	.block-before-after__labels {
+		column-gap: 20px;
+	}
+
+	// Panel eyebrows
+	.block-before-after__label {
+		padding-top: 2.5rem; // 40px
+		padding-bottom: 1.25rem; // 20px
+		font-size: 0.6875rem; // 11px
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+
+		&--before {
+			padding-inline: 2.5rem; // 40px
+			color: var(--body-mid);
+		}
+
+		&--after {
+			padding-inline: 2.75rem; // 44px
+			color: rgba(255, 255, 255, 0.7);
+		}
+	}
+
+	.block-ba-row {
+		column-gap: 20px;
+	}
+
+	.block-ba-row__cell {
+		align-items: center;
+		padding-block: 10px;
+	}
+
+	.block-ba-row__cell--before {
+		padding-inline: 2.5rem; // 40px
+		border-top: 1px solid var(--line);
+	}
+
+	.block-ba-row__cell--after {
+		padding-inline: 2.75rem; // 44px
+		border-top: 1px solid rgba(255, 255, 255, 0.14);
+	}
+
+	.block-ba-row:last-child .block-ba-row__cell {
+		padding-bottom: 2.5rem; // 40px — fills the panel below the last row
+	}
+
+	// "before" — faint X icon, muted text
+	.block-ba-row__icon--before {
+		color: var(--body-mid);
+		opacity: 0.55;
+	}
+
+	.block-ba-row__cell--before .block-ba-row__text {
+		color: var(--body-mid);
+	}
+
+	// "after" — translucent white badge, white text
+	.block-ba-row__badge {
+		width: 22px;
+		height: 22px;
+		background: rgba(255, 255, 255, 0.14);
+		color: #fff;
+	}
+
+	.block-ba-row__cell--after .block-ba-row__text {
+		font-weight: 500;
+		color: #fff;
+	}
+
+	.block-ba-row__text {
+		font-size: var(--text-body-sm); // 16px
+		line-height: 1.4;
+	}
+}
+
+// =============================================================================
+// Mobile — stack the before/after into a single column
+// =============================================================================
+@media (max-width: $md4) {
+	.block-before-after__labels {
+		display: none;
+	}
+
+	.block-before-after .block-ba-row {
+		grid-template-columns: 1fr;
+	}
+
+	// Split: no side-by-side panels — give each cell its own card instead.
+	.block-before-after.is-style-split {
+		.block-ba-row {
+			row-gap: 0;
+		}
+
+		.block-ba-row__cell {
+			border-top: 0;
+			border-radius: 14px;
+			padding: 0.875rem 1.125rem; // 14px 18px
+		}
+
+		.block-ba-row__cell--before {
+			margin-bottom: 0.5rem; // 8px
+			background: var(--canvas-soft);
+			border: 1px solid var(--line);
+		}
+
+		.block-ba-row__cell--after {
+			margin-bottom: 1rem; // 16px
+			background: var(--gradient-accent);
+		}
+
+		.block-ba-row:last-child .block-ba-row__cell--after {
+			margin-bottom: 0;
+		}
+	}
+}

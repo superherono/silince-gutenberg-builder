@@ -1,0 +1,21 @@
+/**
+ * Backend (editor) styles for {{BLOCK_TITLE}}
+ *
+ * @package {{TEXTDOMAIN}}_Theme
+ */
+
+.wp-block-{{NAMESPACE}}-post-card {
+	max-width: 100%;
+
+	li:has(&) {
+		margin-top: 0 !important;
+	}
+
+	// ServerSideRender loading state.
+	.components-placeholder {
+		min-height: 18rem; // 288px
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}

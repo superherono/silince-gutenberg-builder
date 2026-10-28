@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "{{NAMESPACE}}/post-card",
+	"version": "1.0.0",
+	"title": "{{BLOCK_TITLE}}",
+	"category": "{{BLOCK_CATEGORY}}",
+	"description": "{{BLOCK_DESCRIPTION}}",
+	"keywords": ["post", "card", "article", "loop"],
+	"icon": "id-alt",
+	"textdomain": "{{TEXTDOMAIN}}",
+	"attributes": {
+		"postId": {
+			"type": "number",
+			"default": 0
+		},
+		"postType": {
+			"type": "string",
+			"default": "post"
+		},
+		"taxonomy": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": false,
+		"reusable": true,
+		"anchor": true
+	},
+	"usesContext": ["postId", "postType", "queryId"],
+	"render": "file:./render.php"
+}

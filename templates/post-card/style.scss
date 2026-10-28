@@ -1,0 +1,79 @@
+/**
+ * Frontend Styles: {{BLOCK_TITLE}} (NEUTRAL base skeleton).
+ *
+ * ┌──────────────────────────────────────────────────────────────────────────┐
+ * │ Structure (layout) only. Design — colors, typography, spacing, radii —     │
+ * │ generated from the project's design system using theme.json ALIASES        │
+ * │ (var(--primary), var(--space-*), var(--radius-*), var(--text-*), …).       │
+ * │ Per-type styles — `.post-card--{type}` (hook already on root via router).  │
+ * │ Token contract: guides/css-custom-properties.md                            │
+ * └──────────────────────────────────────────────────────────────────────────┘
+ *
+ * @package {{TEXTDOMAIN}}_Theme
+ */
+
+.post-card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+	text-decoration: none;
+	box-sizing: border-box;
+
+	&__thumbnail {
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+
+		img,
+		.wp-post-image {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__pill {
+		position: absolute;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+	}
+
+	&__title {
+		margin: 0;
+	}
+
+	&__summary {
+		margin: 0;
+	}
+
+	&__metrics {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	&__metric {
+		display: flex;
+		flex-direction: column;
+	}
+
+	// Per-type styles — generator writes design here, e.g.:
+	// &--post { … }   &--{cpt} { … }
+}
+
+// Editor placeholder when no post is bound.
+.post-card__placeholder {
+	padding: 2rem;
+	text-align: center;
+	border: 2px dashed currentColor;
+	border-radius: var(--radius-md, 12px);
+	opacity: 0.6;
+
+	p {
+		margin: 0;
+	}
+}

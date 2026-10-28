@@ -1,0 +1,12 @@
+# Local Claude Code and Codex settings (may contain keys)
+.claude/
+.codex/
+.mcp.local.json
+
+# Project-specific design documents are not part of the plugin
+/DESIGN-*.md
+
+node_modules/
+*.log
+.DS_Store
+Thumbs.db

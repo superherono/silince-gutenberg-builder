@@ -1,0 +1,340 @@
+/**
+ * Frontend Styles: Default Button
+ *
+ * @package {{TEXTDOMAIN}}_Theme
+ *
+ * ┌─────────────────────────────────────────────────────────────────────────┐
+ * │ VARIANTS AND SIZES ARE GENERATED. Do not write them by hand.              │
+ * │ $button-variants / $button-sizes contents below — an EXAMPLE; rebuilt by  │
+ * │ the /generate-button-variants command from the project's design system    │
+ * │ (values → var(--alias) from theme.json). The @each loop and the base      │
+ * │ defaults --button-* — generic, DO NOT touch them. Contract:               │
+ * │ guides/button-variant-generation.md                                       │
+ * └─────────────────────────────────────────────────────────────────────────┘
+ */
+
+// Breakpoints
+$md1: 74.9988em;
+$md2: 61.9988em;
+$md3: 47.9988em;
+$md4: 29.9988em;
+$md5: 40.6238em;
+
+// ───────────────────────── Variant recipes (GENERATED) ─────────────────────────
+// Inner map key = CSS variable suffix (`bg-color` → `--button-bg-color`).
+// A variant lists ONLY overrides; the rest — from the base defaults below.
+// Flags (not custom props): `underline-hover`, `dark-context`.
+$button-variants: (
+	primary: (
+		bg-color: var(--primary),
+		bg-color-hover: var(--primary-deep),
+		text-color: var(--on-primary),
+		border-radius: var(--radius-md),
+		padding-y: var(--space-md),
+		padding-x: var(--space-xl),
+		font-size: var(--text-button-md),
+		icon-bg: var(--on-primary),
+		icon-color: var(--primary),
+	),
+	secondary: (
+		bg-color: var(--ink),
+		bg-color-hover: color-mix(in srgb, var(--ink) 88%, #000),
+		text-color: var(--on-primary),
+		border-radius: var(--radius-md),
+		padding-y: var(--space-md),
+		padding-x: var(--space-xl),
+		font-size: var(--text-button-md),
+	),
+	tertiary: (
+		bg-color: var(--canvas),
+		bg-color-hover: color-mix(in srgb, var(--ink) 4%, var(--canvas)),
+		text-color: var(--ink),
+		border-color: var(--line-strong),
+		border-width: 1px,
+		border-radius: var(--radius-md),
+		padding-y: var(--space-md),
+		padding-x: var(--space-xl),
+		font-size: var(--text-button-md),
+	),
+	text: (
+		bg-color: transparent,
+		text-color: var(--primary),
+		border-radius: var(--radius-md),
+		padding-y: var(--space-sm),
+		padding-x: var(--space-md),
+		font-size: var(--text-button-sm),
+		underline-hover: true,
+	),
+);
+
+// ───────────────────────── Size recipes (GENERATED) ─────────────────────────
+// The size axis — the plugin's own (usually absent in the design). medium = the variant's default.
+$button-sizes: (
+	small: (
+		font-size: var(--text-button-sm),
+		padding-y: var(--space-sm),
+		padding-x: var(--space-md),
+	),
+	medium: (),
+	large: (
+		padding-y: var(--space-lg),
+		padding-x: var(--space-2xl),
+	),
+);
+
+.{{NAMESPACE}}-{{BLOCK_NAME}} {
+	// Shared CSS custom properties (base — overridable per-variant + per-instance)
+	--button-bg-color: transparent;
+	--button-bg-color-hover: transparent;
+	--button-text-color: currentColor;
+	--button-border-color: transparent;
+	--button-border-width: 0;
+	--button-border-radius: var(--radius-md);
+	--button-padding-y: var(--space-md);
+	--button-padding-x: var(--space-xl);
+	--button-gap: var(--space-sm);
+	--button-font-size: var(--text-button-md);
+	--button-font-family: var(--font-body, 'Inter', system-ui, sans-serif);
+	--button-font-weight: 600;
+	--button-letter-spacing: 0;
+	--button-shadow: none;
+	--button-shadow-hover: none;
+	--button-hover-transform: none;
+	--button-icon-size: 1em;
+	--button-icon-bg: transparent;
+	--button-icon-color: currentColor;
+
+	display: inline-flex;
+	width: auto;
+	font-family: var(--button-font-family);
+
+	// Opt-in: stretch the button (and inner link) to fill the parent.
+	// Default-button used to be `width: 100%`; that broke flex rows of multiple
+	// buttons (each child claimed 100% width and wrapped onto its own line).
+	// Use `is-style-full` / `--full` when you actually want full-width.
+	&--full,
+	&.is-style-full {
+		display: flex;
+		width: 100%;
+
+		.{{NAMESPACE}}-{{BLOCK_NAME}}__link {
+			width: 100%;
+		}
+	}
+
+	// ───────────────────────── Variants (generic loop — DO NOT EDIT) ─────────────────────────
+	@each $name, $cfg in $button-variants {
+		&--#{$name} {
+			@each $prop, $val in $cfg {
+				@if $prop != 'underline-hover' and $prop != 'dark-context' {
+					--button-#{$prop}: #{$val};
+				}
+			}
+
+			// text-style affordance — underline on hover
+			@if map-get($cfg, 'underline-hover') {
+				.{{NAMESPACE}}-{{BLOCK_NAME}}__link:hover .{{NAMESPACE}}-{{BLOCK_NAME}}__text {
+					text-decoration: underline;
+					text-underline-offset: 4px;
+				}
+			}
+		}
+	}
+
+	// ───────────────────────── Sizes (generic loop — DO NOT EDIT) ─────────────────────────
+	@each $name, $cfg in $button-sizes {
+		&--size-#{$name} {
+			@each $prop, $val in $cfg {
+				--button-#{$prop}: #{$val};
+			}
+		}
+	}
+
+	// ───────────────────────── Link element ─────────────────────────
+
+	&__link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--button-gap);
+		padding: var(--button-padding-y) var(--button-padding-x);
+
+		text-decoration: none;
+		cursor: pointer;
+		background-color: var(--button-bg-color);
+		color: var(--button-text-color);
+		border: var(--button-border-width) solid var(--button-border-color);
+		border-radius: var(--button-border-radius);
+		font-size: var(--button-font-size);
+		font-weight: var(--button-font-weight);
+		letter-spacing: var(--button-letter-spacing);
+		line-height: 1;
+		box-shadow: var(--button-shadow);
+		transition:
+			transform 0.15s ease,
+			box-shadow 0.15s ease,
+			background-color 0.15s ease,
+			border-color 0.15s ease,
+			color 0.15s ease;
+
+		&:hover {
+			background-color: var(--button-bg-color-hover);
+			transform: var(--button-hover-transform);
+			box-shadow: var(--button-shadow-hover, var(--button-shadow));
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--primary);
+			outline-offset: 3px;
+		}
+	}
+
+	// ───────────────────────── Text ─────────────────────────
+
+	&__text {
+		font-family: inherit;
+		font-weight: inherit;
+		color: inherit;
+		font-size: inherit;
+		line-height: 1;
+		white-space: nowrap;
+	}
+
+	// ───── Split-flap text animation ─────
+	// Activates only when data-text is present (save.js sets it on the front end,
+	// edit.js — does not, so the animation does not get in the way of editing in the admin).
+	// The inner <span> stays in the DOM (without visibility:hidden) — for screen readers and SEO.
+	// Pseudo-elements render the text from attr(data-text) and rotate via rotateX.
+	&__text[data-text] {
+		position: relative;
+		height: 1em;
+		line-height: 1;
+		overflow: hidden;
+		perspective: 400px;
+		perspective-origin: 50% 50%;
+
+		> span {
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		&::after,
+		&::before {
+			content: attr(data-text);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			transform-origin: 50% 50% -1em;
+			backface-visibility: hidden;
+			transition: transform 0.31s cubic-bezier(0.83, 0, 0.17, 1);
+			will-change: transform;
+			pointer-events: none;
+		}
+		&::before {
+			transform: rotateX(0deg);
+		}
+		&::after {
+			transform: rotateX(-90deg);
+		}
+	}
+
+	@media (any-hover: hover) {
+		&:hover &__text[data-text] {
+			&::before {
+				transform: rotateX(90deg);
+			}
+			&::after {
+				transform: rotateX(0deg);
+				transition-delay: 0.02s;
+			}
+		}
+	}
+
+	// ───────────────────────── Icons ─────────────────────────
+
+	// inline arrow — sits next to text, inherits color, slight slide on hover
+	&__icon-inline {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1em;
+		line-height: 1;
+		color: inherit;
+		transition: transform 0.2s ease;
+	}
+
+	&__link:hover &__icon-inline {
+		transform: translateX(3px);
+	}
+
+	// circle wrapper — opt-in legacy / decorative variant (used for cards/CTAs that want a chip).
+	// Chip colors — from the --button-icon-bg / --button-icon-color variables (set by the variant via the map).
+	&__icon-wrapper {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		width: 2.5rem; // 40px
+		aspect-ratio: 1;
+		padding: 0.5rem; // 8px
+		background-color: var(--button-icon-bg);
+		border-radius: 999px;
+		transition:
+			transform 0.25s ease,
+			background-color 0.25s ease;
+	}
+
+	&__icon {
+		color: var(--button-icon-color);
+		flex-shrink: 0;
+		width: 1.5rem; // 24px
+		aspect-ratio: 1;
+	}
+
+	&__link:hover &__icon-wrapper {
+		transform: rotate(-15deg);
+	}
+}
+
+// Reduced-motion preference
+@media (prefers-reduced-motion: reduce) {
+	.{{NAMESPACE}}-{{BLOCK_NAME}} {
+		--button-hover-transform: none;
+	}
+	.{{NAMESPACE}}-{{BLOCK_NAME}}__link,
+	.{{NAMESPACE}}-{{BLOCK_NAME}}__icon-wrapper,
+	.{{NAMESPACE}}-{{BLOCK_NAME}}__icon-inline {
+		transition: none;
+	}
+	.{{NAMESPACE}}-{{BLOCK_NAME}}__link:hover .{{NAMESPACE}}-{{BLOCK_NAME}}__icon-inline {
+		transform: none;
+	}
+	// Disable split-flap: show only the top layer, statically.
+	.{{NAMESPACE}}-{{BLOCK_NAME}}__text[data-text] {
+		&::after,
+		&::before {
+			transition: none;
+		}
+	}
+	.{{NAMESPACE}}-{{BLOCK_NAME}}:hover .{{NAMESPACE}}-{{BLOCK_NAME}}__text[data-text] {
+		&::before {
+			transform: rotateX(0deg);
+		}
+		&::after {
+			transform: rotateX(-90deg);
+		}
+	}
+}
+
+// High-contrast mode
+@media (prefers-contrast: high) {
+	.{{NAMESPACE}}-{{BLOCK_NAME}}__link {
+		border: 2px solid currentColor;
+	}
+}

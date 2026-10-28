@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "integroflow/before-after",
+	"version": "2.1.0",
+	"title": "Before / After",
+	"category": "integroflow-services",
+	"description": "Before/after comparison with two layout styles — an editorial ledger table and a split navy-spotlight panel. Switch layout in the block's Styles panel.",
+	"keywords": ["before", "after", "comparison", "outcome", "automation", "ledger", "split"],
+	"icon": "editor-table",
+	"textdomain": "integroflow",
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	}
+}

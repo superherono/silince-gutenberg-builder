@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "integroflow/ba-row",
+	"version": "1.0.0",
+	"title": "Before / After Row",
+	"category": "integroflow-services",
+	"description": "A single before/after comparison row (before cell + accent-tinted after cell).",
+	"keywords": ["before", "after", "row", "comparison"],
+	"icon": "columns",
+	"textdomain": "integroflow",
+	"ancestor": ["integroflow/before-after"],
+	"attributes": {
+		"before": {
+			"type": "string",
+			"default": ""
+		},
+		"after": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"reusable": false
+	}
+}

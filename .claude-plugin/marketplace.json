@@ -1,0 +1,17 @@
+{
+  "name": "silince-gutenberg-builder",
+  "owner": {
+    "name": "Dmitrii Morozan"
+  },
+  "metadata": {
+    "description": "Silince Gutenberg Builder, a Claude Code plugin for native Gutenberg blocks"
+  },
+  "plugins": [
+    {
+      "name": "silince-gutnebrg-builder",
+      "source": "./",
+      "description": "Builds native WordPress Gutenberg blocks from Figma designs, HTML and SCSS, or React pages through an analyse, generate, validate, fix agent pipeline",
+      "version": "1.0.0"
+    }
+  ]
+}

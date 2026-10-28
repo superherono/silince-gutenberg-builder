@@ -1,0 +1,60 @@
+/**
+ * Backend (editor) styles for Default Button
+ *
+ * @package {{TEXTDOMAIN}}_Theme
+ */
+
+.wp-block-{{NAMESPACE}}-default-button {
+	// Editor-specific wrapper adjustments
+	margin: 20px 0;
+
+	// Prevent button from being clickable in editor
+	.{{NAMESPACE}}-{{BLOCK_NAME}}__link {
+		pointer-events: none;
+		position: relative;
+
+		// Show visual indicator that it's editable
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			border: 2px dashed transparent;
+			border-radius: inherit;
+			pointer-events: none;
+			transition: border-color 0.2s ease;
+		}
+	}
+
+	// Show edit indicator on hover
+	&:hover {
+		.{{NAMESPACE}}-{{BLOCK_NAME}}__link::after {
+			border-color: rgba(63, 78, 115, 0.3);
+		}
+	}
+
+	// Selected state
+	&.is-selected {
+		.{{NAMESPACE}}-{{BLOCK_NAME}}__link::after {
+			border-color: var(--primary);
+		}
+	}
+
+	// Make text editable
+	.{{NAMESPACE}}-{{BLOCK_NAME}}__text {
+		pointer-events: auto;
+		cursor: text;
+
+		&:focus {
+			outline: none;
+		}
+
+		// Empty state placeholder
+		&:empty::before {
+			content: attr(placeholder);
+			color: rgba(255, 255, 255, 0.5);
+		}
+	}
+}

@@ -1,0 +1,9 @@
+{
+	"name": "silince-gutnebrg-builder",
+	"version": "1.0.0",
+	"description": "Builds native WordPress Gutenberg blocks from Figma designs, HTML and SCSS, or React pages through an analyse, generate, validate, fix agent pipeline",
+	"author": {
+		"name": "Dmitrii Morozan"
+	},
+	"license": "MIT"
+}

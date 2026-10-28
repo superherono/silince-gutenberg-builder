@@ -1,0 +1,15 @@
+// Editor parity. edit.js spreads InnerBlocks onto `__layout` via
+// useInnerBlocksProps and every nested container is a core/group, so the DOM
+// already matches the front end and style.scss (loaded in the editor too) does
+// the heavy lifting. Only small editor-only nudges live here.
+.block-before-after {
+	// Keep the child-block wrappers from adding vertical gaps that would push
+	// the painted split panels out of alignment with the rows.
+	.block-before-after__body,
+	.block-before-after__labels {
+		.block-editor-block-list__block {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+}
