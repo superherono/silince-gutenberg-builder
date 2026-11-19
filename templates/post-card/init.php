@@ -6,6 +6,7 @@
  * Self-contained wiring for the `{{NAMESPACE}}/post-card` block:
  *   1. The card config (which post types get a Query Loop variation).
  *   2. Generic data helpers (excerpt, thumbnail, default taxonomy).
+ *   2b. Query Loop tracking for render.php (front-end).
  *   3. Enqueue + localize the Query Loop variations (variation.js).
  *   4. Register one block pattern per configured post type.
  *
@@ -100,6 +101,73 @@ if (! function_exists('{{NAMESPACE}}_post_card_thumbnail')) {
 
 		return apply_filters('{{NAMESPACE}}_post_card_thumbnail_fallback', '', $post_id, $size);
 	}
+}
+
+/* -------------------------------------------------------------------------
+ * 2b. Query Loop tracking (front-end)
+ * ---------------------------------------------------------------------- */
+
+// edit.js tells a Query Loop item from a standalone card by the `queryId`
+// context. On the server core/post-template hands its inner blocks only
+// `postId`/`postType`, so render.php asks this tracker instead: it counts the
+// Post Template renders in progress. Post content (`the_content`) opens a
+// fresh level, so a standalone card inside a post that a Query Loop shows in
+// full (Post Content block) still counts as standalone.
+//
+// Call without arguments to ask "is the card inside a Query Loop?"; the
+// actions are fired by the hooks below.
+if (! function_exists('{{NAMESPACE}}_post_card_in_query_loop')) {
+	function {{NAMESPACE}}_post_card_in_query_loop($action = '')
+	{
+		static $levels = array(0);
+
+		$top = count($levels) - 1;
+
+		switch ($action) {
+			case 'enter_loop':
+				$levels[$top]++;
+				break;
+			case 'leave_loop':
+				$levels[$top] = max(0, $levels[$top] - 1);
+				break;
+			case 'enter_content':
+				$levels[] = 0;
+				break;
+			case 'leave_content':
+				if ($top > 0) {
+					array_pop($levels);
+				}
+				break;
+		}
+
+		return $levels[count($levels) - 1] > 0;
+	}
+
+	add_filter('render_block_data', function ($parsed_block) {
+		if (isset($parsed_block['blockName']) && 'core/post-template' === $parsed_block['blockName']) {
+			{{NAMESPACE}}_post_card_in_query_loop('enter_loop');
+		}
+
+		return $parsed_block;
+	});
+
+	add_filter('render_block_core/post-template', function ($block_content) {
+		{{NAMESPACE}}_post_card_in_query_loop('leave_loop');
+
+		return $block_content;
+	});
+
+	add_filter('the_content', function ($content) {
+		{{NAMESPACE}}_post_card_in_query_loop('enter_content');
+
+		return $content;
+	}, 0);
+
+	add_filter('the_content', function ($content) {
+		{{NAMESPACE}}_post_card_in_query_loop('leave_content');
+
+		return $content;
+	}, PHP_INT_MAX);
 }
 
 /* -------------------------------------------------------------------------

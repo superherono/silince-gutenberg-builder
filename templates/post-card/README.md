@@ -31,6 +31,28 @@ The view does **presentation + escaping only** (`esc_html` / `esc_url` /
 `wp_kses_post`). Data prep stays in `render.php`. Per-type views are picked by
 filename — **no router edits** needed to add a card.
 
+## Which entry the card shows
+
+Same rule in the editor and on the front-end:
+
+- **Inside a Query Loop** — the loop item. The `postId` attribute is ignored.
+- **Anywhere else** — only the entry picked in the sidebar (`postId`). Without
+  one the editor shows a placeholder and the front-end renders nothing; the
+  card never falls back to the page it sits on.
+
+The front-end detects a Query Loop with a small tracker in `init.php`
+(`{{NAMESPACE}}_post_card_in_query_loop()`): on the server `core/post-template`
+does not pass `queryId` to its inner blocks, unlike the editor.
+
+To render a card from PHP (e.g. a classic theme loop), pass the entry:
+
+```php
+echo render_block(array(
+	'blockName' => '{{NAMESPACE}}/post-card',
+	'attrs'     => array('postId' => get_the_ID()),
+));
+```
+
 ## Wiring (after scaffold)
 
 1. Editor import — add to the theme's `src/index.js`:

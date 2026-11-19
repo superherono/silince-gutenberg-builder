@@ -8,10 +8,10 @@
  *   - post-card-{post_type}.php  when that file exists in this folder
  *   - post-card.php              default fallback (and for `post`)
  *
- * Post-type agnostic: renders whatever post it is given (a manually selected
- * entry first; otherwise Query Loop context or the main loop). Template
- * resolution is relative to __DIR__, so the module stays portable when moved
- * within the theme/plugin.
+ * Post-type agnostic: renders whatever post it is given (the loop item inside
+ * a Query Loop, otherwise the manually selected entry). Template resolution is
+ * relative to __DIR__, so the module stays portable when moved within the
+ * theme/plugin.
  *
  * The root gets a `post-card--{post_type}` modifier class so per-type views can
  * be styled independently without touching this router.
@@ -28,23 +28,21 @@ if (! defined('ABSPATH')) {
 
 $is_editor_preview = defined('REST_REQUEST') && REST_REQUEST;
 
-// Resolve post id (no post-type gate — the card is post-type-agnostic).
-// The explicitly selected entry (`postId` attribute) wins everywhere: on a
-// page or post, block context and the main loop both point at the page being
-// viewed, never at the selected entry. Front-end fallbacks for a card without
-// a selection: block context (a Query Loop item gets its post here), then the
-// main loop. Editor: the attribute alone (edit.js resolves Query Loop context
-// into it).
+// Resolve post id (no post-type gate — the card is post-type-agnostic) the
+// same way edit.js does: inside a Query Loop — the loop item from block
+// context; anywhere else — only the explicitly selected entry (`postId`).
+// Outside a Query Loop, block context and the main loop point at the page
+// being viewed, never at the card's entry, so a card without a selection
+// renders nothing there (the editor shows a placeholder). Editor: the
+// attribute alone (edit.js resolves Query Loop context into it).
 $post_id = 0;
 
-if (! empty($attributes['postId'])) {
-	$post_id = absint($attributes['postId']);
-} elseif (! $is_editor_preview) {
+if (! $is_editor_preview && {{NAMESPACE}}_post_card_in_query_loop()) {
 	if (! empty($block->context['postId'])) {
 		$post_id = absint($block->context['postId']);
-	} elseif (in_the_loop()) {
-		$post_id = get_the_ID();
 	}
+} elseif (! empty($attributes['postId'])) {
+	$post_id = absint($attributes['postId']);
 }
 
 if (! $post_id) {
