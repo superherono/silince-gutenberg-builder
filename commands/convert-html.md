@@ -5,7 +5,7 @@ Converts ready-made markup (HTML + SCSS) into a WordPress Gutenberg block.
 ## Usage
 
 ```
-/silince-gutnebrg-builder:convert-html <path-to-html> [<path-to-scss>] [--no-comments]
+/silince-gutenberg-builder:convert-html <path-to-html> [<path-to-scss>] [--no-comments]
 ```
 
 **Parameters:**
@@ -26,7 +26,7 @@ Converts ready-made markup (HTML + SCSS) into a WordPress Gutenberg block.
 7. **Ask the user questions** (from the list in the prompt). **With `--no-comments`: DO NOT ask — apply the autonomous defaults** (see `guides/command-orchestration.md#-7-autonomous-mode-the---no-comments-flag`) and list the auto-decisions in the final report.
 8. **Use context7** to check that the WordPress Block API usage is up to date
 9. **Generate the files** according to the prompt (taking `userPreGenNotes` into account, if set)
-10. **Offer validation** via `/silince-gutnebrg-builder:validate-block`
+10. **Offer validation** via `/silince-gutenberg-builder:validate-block`
 
 ## Important
 

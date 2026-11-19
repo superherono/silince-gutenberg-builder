@@ -100,7 +100,7 @@ All runs save their state to `{blocksDir}/.conversion-state.json`:
 
 ### STEP 0: Reading the config and routing
 
-1. Read `src/.claude/config.json` → `pluginSettings['silince-gutnebrg-builder']`:
+1. Read `src/.claude/config.json` → `pluginSettings['silince-gutenberg-builder']` (missing → the pre-2.0.0 key `pluginSettings['silince-gutnebrg-builder']`):
    - `namespace`, `textdomain`, `blocksDir`, `blockCategory`
    - Record `autonomous = whether the --no-comments flag is present`. In autonomous mode the command asks NOT A SINGLE question in any of the steps below — apply the defaults from `guides/command-orchestration.md#-7-autonomous-mode-the---no-comments-flag`.
 2. **If `--continue` / `--status` / `--retry` / `--skip` / `--update-source` is present:**
@@ -499,7 +499,7 @@ If there are unfinished sections (`pending`/`skipped`) — add:
   • pending: ${pendingNames.join(', ')}
   • skipped: ${skippedNames.join(', ')}
 
-Continue later: /silince-gutnebrg-builder:convert-react-page --continue
+Continue later: /silince-gutenberg-builder:convert-react-page --continue
 ```
 
 ---
@@ -749,7 +749,7 @@ On confirmation — delete `.conversion-state.json` and ask for a new source.
 ## 📝 Full run example
 
 ```bash
-/silince-gutnebrg-builder:convert-react-page https://claude.ai/design/DxSm5MZ4nQ9Ol72e2HFWFA
+/silince-gutenberg-builder:convert-react-page https://claude.ai/design/DxSm5MZ4nQ9Ol72e2HFWFA
 ```
 
 1. Import via `claude_design` MCP (preflight → import) → normalization into `src/.claude/handoffs/DxSm5MZ4nQ9Ol72e2HFWFA/`
@@ -772,7 +772,7 @@ On confirmation — delete `.conversion-state.json` and ask for a new source.
 A week later the client reworked hero and process. A new link to the design.
 
 ```bash
-/silince-gutnebrg-builder:convert-react-page --update-source https://claude.ai/design/<NEW_HASH> --regenerate hero,process
+/silince-gutenberg-builder:convert-react-page --update-source https://claude.ai/design/<NEW_HASH> --regenerate hero,process
 ```
 
 1. Import the new source via `claude_design` MCP → normalization into `src/.claude/handoffs/<NEW_HASH>/`.
@@ -788,7 +788,7 @@ A week later the client reworked hero and process. A new link to the design.
 If the design had been reworked without `--regenerate`:
 
 ```bash
-/silince-gutnebrg-builder:convert-react-page --update-source https://claude.ai/design/<NEW_HASH>
+/silince-gutenberg-builder:convert-react-page --update-source https://claude.ai/design/<NEW_HASH>
 ```
 
 — the command will show the diff and ask a multi-select question about what to regenerate.

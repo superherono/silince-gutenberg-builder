@@ -19,9 +19,9 @@ Aggressive automatic fix of errors in a Gutenberg block, including complex cases
 **Examples:**
 
 ```bash
-/silince-gutnebrg-builder:force-fix hero --backup
-/silince-gutnebrg-builder:force-fix hero --max-iterations 2
-/silince-gutnebrg-builder:force-fix hero --only missing_i18n,missing_escaping
+/silince-gutenberg-builder:force-fix hero --backup
+/silince-gutenberg-builder:force-fix hero --max-iterations 2
+/silince-gutenberg-builder:force-fix hero --only missing_i18n,missing_escaping
 ```
 
 ---
@@ -244,14 +244,14 @@ Applied fixes:
 💡 What to do next:
 
 1. Fix manually:
-   /silince-gutnebrg-builder:show-fix-guide [blockName]
+   /silince-gutenberg-builder:show-fix-guide [blockName]
 
 [If backup]:
 2. Restore from the backup:
    cp -r [backupPath]/* [blockPath]/
 
 3. Try other types:
-   /silince-gutnebrg-builder:force-fix [blockName] --only [types]
+   /silince-gutenberg-builder:force-fix [blockName] --only [types]
 
 [If the limit is reached]:
 ⚠️ Iteration limit reached ([maxIterations]).

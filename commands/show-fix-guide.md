@@ -18,9 +18,9 @@ Detailed instructions for manually fixing errors in a Gutenberg block.
 **Examples:**
 
 ```bash
-/silince-gutnebrg-builder:show-fix-guide hero
-/silince-gutnebrg-builder:show-fix-guide hero --type missing_i18n
-/silince-gutnebrg-builder:show-fix-guide hero --save fix-instructions.md
+/silince-gutenberg-builder:show-fix-guide hero
+/silince-gutenberg-builder:show-fix-guide hero --type missing_i18n
+/silince-gutenberg-builder:show-fix-guide hero --save fix-instructions.md
 ```
 
 ---
@@ -134,7 +134,7 @@ Total errors: [N]
 ### Check after fixing:
 
 ```bash
-/silince-gutnebrg-builder:validate-block [blockName]
+/silince-gutenberg-builder:validate-block [blockName]
 ```
 
 ---
@@ -178,13 +178,13 @@ By type:
 1. Fix the errors manually, following the instructions above
 
 2. After fixing, run validation:
-   /silince-gutnebrg-builder:validate-block [blockName]
+   /silince-gutenberg-builder:validate-block [blockName]
 
 3. If simple errors remain, try the auto-fix:
-   /silince-gutnebrg-builder:validate-block [blockName] --fix
+   /silince-gutenberg-builder:validate-block [blockName] --fix
 
 4. For an aggressive fix:
-   /silince-gutnebrg-builder:force-fix [blockName] --backup
+   /silince-gutenberg-builder:force-fix [blockName] --backup
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

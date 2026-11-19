@@ -19,9 +19,9 @@ Checks that an existing Gutenberg block is correct.
 **Examples:**
 
 ```bash
-/silince-gutnebrg-builder:validate-block hero
-/silince-gutnebrg-builder:validate-block hero --fix
-/silince-gutnebrg-builder:validate-block hero --strict --report validation.json
+/silince-gutenberg-builder:validate-block hero
+/silince-gutenberg-builder:validate-block hero --fix
+/silince-gutenberg-builder:validate-block hero --strict --report validation.json
 ```
 
 ---
@@ -177,13 +177,13 @@ Require a manual fix: [N]
 
 [If autoFixableCount > 0]:
 1. Fix automatically:
-   /silince-gutnebrg-builder:validate-block [blockName] --fix
+   /silince-gutenberg-builder:validate-block [blockName] --fix
 
 2. Fix manually:
-   /silince-gutnebrg-builder:show-fix-guide [blockName]
+   /silince-gutenberg-builder:show-fix-guide [blockName]
 
 3. Detailed report:
-   /silince-gutnebrg-builder:validate-block [blockName] --report validation.json
+   /silince-gutenberg-builder:validate-block [blockName] --report validation.json
 ```
 
 → **If --fix is NOT given:** DONE
@@ -292,7 +292,7 @@ Applied fixes:
    Warnings: [N]
 
    These issues require a manual fix.
-   Instructions: /silince-gutnebrg-builder:show-fix-guide [blockName]
+   Instructions: /silince-gutenberg-builder:show-fix-guide [blockName]
 ```
 
 ### STEP 5: Saving the report (if --report)
@@ -343,7 +343,7 @@ Possible causes:
 - Missing required files
 
 Recreating the block is recommended:
-/silince-gutnebrg-builder:create-block <source> --name [blockName]
+/silince-gutenberg-builder:create-block <source> --name [blockName]
 ```
 
 **Fixer could not fix:**
@@ -357,7 +357,7 @@ Remaining: [N]
 The remaining issues require manual intervention.
 
 Instructions:
-/silince-gutnebrg-builder:show-fix-guide [blockName]
+/silince-gutenberg-builder:show-fix-guide [blockName]
 ```
 
 ---

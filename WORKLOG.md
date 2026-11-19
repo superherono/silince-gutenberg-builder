@@ -1,6 +1,24 @@
-# Work Log — silince-gutnebrg-builder
+# Work Log — silince-gutenberg-builder
 
-Reverse chronological — newest on top. Capabilities reference — [README.md](README.md). Format: `## date — title` → **TL;DR** / **Changes** / **Decisions** (if any) / **Status**; full specification — in the project memory.
+Reverse chronological — newest on top. Capabilities reference — [README.md](README.md). Format: `## date — title` → **TL;DR** / **Changes** / **Decisions** (if any) / **Status**; full specification — in the project memory. Entries before 2.0.0 use the old plugin id `silince-gutnebrg-builder`.
+
+---
+
+## 2026-11-19 — 2.0.0: plugin id without the typo
+
+TL;DR  The plugin id is now `silince-gutenberg-builder`, the same as the repository; commands start with `/silince-gutenberg-builder:`. Breaking for existing installs — reinstall (README → Upgrading from 1.x).
+
+Changes
+· `.claude-plugin/plugin.json`, `marketplace.json`, commands, guides, prompts, README — the id renamed everywhere (67 places).
+· Config reading (`command-orchestration.md`, `create-block.md`, `convert-react-page.md`, `button-variant-generation.md`) — falls back to the old key `pluginSettings['silince-gutnebrg-builder']`, so configured projects keep their settings.
+· README — plain-language intro with the phrases people search for (Figma/HTML/React to Gutenberg), "Upgrading from 1.x".
+· GitHub — repository topics and a description that mentions WordPress; release v1.0.1 published.
+
+Decisions
+· Major version: the id change breaks installs and command names.
+· Past WORKLOG entries keep the old id — they record what was true at the time.
+
+Status  merged to main
 
 ---
 
