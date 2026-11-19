@@ -4,6 +4,23 @@ Reverse chronological — newest on top. Capabilities reference — [README.md](
 
 ---
 
+## 2026-11-19 — 1.0.1: post card entry resolution (#1, #3)
+
+TL;DR  On the front-end the post card shows the same entry as in the editor: the loop item inside a Query Loop, otherwise only the entry selected in the sidebar.
+
+Changes
+· `templates/post-card/render.php` — the selected entry (`postId`) is no longer overridden by the page the card sits on (#1, PR #2).
+· `templates/post-card/init.php` — server-side Query Loop tracker `{{NAMESPACE}}_post_card_in_query_loop()`; a card without a selection renders nothing outside a loop, a leftover `postId` inside a loop is ignored (#3, PR #4).
+· `templates/post-card/README.md` — "Which entry the card shows" section.
+
+Decisions
+· On the server `core/post-template` passes only `postId`/`postType` to inner blocks (no `queryId`), so the loop is detected by counting Post Template renders; `the_content` opens a fresh level so a card inside a post shown in full by a Query Loop stays standalone.
+· A card rendered from PHP without `postId` no longer picks up the current post — pass `postId` explicitly (README).
+
+Status  merged to main · checked on a throwaway WordPress 7.1.5 site (block + classic theme, 42/42) · already scaffolded copies of post-card are not updated
+
+---
+
 ## 2026-07-03 — COMPONENTS.md consumption + MCP-only source
 
 TL;DR  The plugin reads the design's component registry (`data-component` → component/variant choice); design URL import — only via the `claude_design` MCP.

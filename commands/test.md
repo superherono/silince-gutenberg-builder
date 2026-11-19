@@ -7,7 +7,7 @@ Print this message to the user:
 ```
 ✅ The silince-gutnebrg-builder plugin works!
 
-Version: 1.0.0
+Version: 1.0.1
 Path: ${CLAUDE_PLUGIN_ROOT}/
 
 Available commands:

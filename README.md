@@ -385,9 +385,9 @@ The plugin itself was written with Claude Code. I write the architecture, the st
 
 ## Version
 
-- **Plugin:** 1.0.0
+- **Plugin:** 1.0.1
 - **Author:** Dmitrii Morozan
-- **Updated:** 2026-07-03
+- **Updated:** 2026-11-19
 
 See [WORKLOG.md](WORKLOG.md) for the change history.
 
