@@ -1,3 +1,8 @@
+---
+name: analyzer
+description: Analyzes a Figma design or HTML/CSS markup and returns a JSON spec of one Gutenberg block (structure, attributes, InnerBlocks, styles) for the generator agent. Use before generating a block; writes no code.
+---
+
 # Analyzer Agent - Design and Structure Analysis
 
 A specialized agent that analyzes Figma designs or HTML markup and extracts the block structure.

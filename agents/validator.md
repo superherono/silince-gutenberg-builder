@@ -1,3 +1,8 @@
+---
+name: validator
+description: Checks a Gutenberg block against the plugin's coding standards, security rules and best practices and returns an error report for the fixer agent. Use to validate a new or edited block.
+---
+
 # Validator Agent - Block correctness check
 
 A specialized agent for validating a Gutenberg block.

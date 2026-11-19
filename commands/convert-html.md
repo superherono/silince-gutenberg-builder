@@ -1,3 +1,7 @@
+---
+description: Convert a prepared HTML/SCSS section into a Gutenberg block
+---
+
 # /convert-html — Converting HTML/SCSS into a Gutenberg block
 
 Converts ready-made markup (HTML + SCSS) into a WordPress Gutenberg block.

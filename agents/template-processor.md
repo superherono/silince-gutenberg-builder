@@ -1,3 +1,8 @@
+---
+name: template-processor
+description: Reference for filling the plugin's code templates (placeholders such as {{NAMESPACE}} and {{BLOCK_NAME}}) when generating blocks. Used by other agents, not on its own.
+---
+
 # Template Processor Helper
 
 ## Description

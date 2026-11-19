@@ -1,3 +1,8 @@
+---
+name: generator
+description: Generates a complete Gutenberg block (block.json, edit.js, save.js or render.php, SCSS) from the analyzer's JSON spec, following the plugin's block standard. Use after the analyzer agent.
+---
+
 # Generator Agent - Gutenberg Block Code Generation
 
 **📌 Version: 2.1.3** | Last updated: 2026-01-13

@@ -1,3 +1,8 @@
+---
+name: fixer
+description: Fixes simple, predictable errors in a generated Gutenberg block from the validator's error report (i18n, escaping, supports, BEM and similar), reading only the affected files. Use after the validator reports errors.
+---
+
 # Fixer Agent - Automatic Error Fixing
 
 A specialized agent for automatically fixing simple errors in generated Gutenberg blocks.
