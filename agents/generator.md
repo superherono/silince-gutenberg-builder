@@ -720,7 +720,7 @@ Options (multiSelect: false):
 
 **📚 Reference for Question 3:**
 
-See the detailed guide: [guides/innerblocks-composition.md](guides/innerblocks-composition.md), sections "When to use InnerBlocks vs Array Attributes" and "Pattern 1: Parent-Child blocks"
+See the detailed guide: [guides/innerblocks-composition.md](../guides/innerblocks-composition.md), sections "When to use InnerBlocks vs Array Attributes" and "Pattern 1: Parent-Child blocks"
 
 ---
 
@@ -810,7 +810,7 @@ childBlockInfo.childAttributes = {
 
 **📚 Reference:**
 
-See [guides/innerblocks-composition.md](guides/innerblocks-composition.md), section "Pattern 1: Parent-Child blocks", to understand the structure.
+See [guides/innerblocks-composition.md](../guides/innerblocks-composition.md), section "Pattern 1: Parent-Child blocks", to understand the structure.
 
 ---
 
@@ -1299,7 +1299,7 @@ const TEMPLATE = [
 
 **📚 Reference:**
 
-See [GUTENBERG_BLOCK_STRUCTURE_PROMPT.md](GUTENBERG_BLOCK_STRUCTURE_PROMPT.md) section "1. Use InnerBlocks Instead of RichText" to understand the approach.
+See [GUTENBERG_BLOCK_STRUCTURE_PROMPT.md](../GUTENBERG_BLOCK_STRUCTURE_PROMPT.md) section "1. Use InnerBlocks Instead of RichText" to understand the approach.
 
 ---
 
@@ -1346,7 +1346,7 @@ See [GUTENBERG_BLOCK_STRUCTURE_PROMPT.md](GUTENBERG_BLOCK_STRUCTURE_PROMPT.md) s
 
 #### 📚 Reference:
 
-See the detailed guide: [guides/innerblocks-composition.md](guides/innerblocks-composition.md) section "Special case: Buttons"
+See the detailed guide: [guides/innerblocks-composition.md](../guides/innerblocks-composition.md) section "Special case: Buttons"
 
 ---
 
@@ -1779,7 +1779,7 @@ return (
 
 **📚 Composition reference:**
 
-See [guides/innerblocks-composition.md](guides/innerblocks-composition.md) sections "Pattern 1: Parent-Child blocks" and "Special case: Buttons"
+See [guides/innerblocks-composition.md](../guides/innerblocks-composition.md) sections "Pattern 1: Parent-Child blocks" and "Special case: Buttons"
 
 **Save:** `{{blocksDir}}/{{blockName}}/edit.js`
 
@@ -1987,7 +1987,7 @@ The child block uses THE SAME token aliases from the theme's `theme.json` (`var(
 
 **📚 Reference:**
 
-See [guides/innerblocks-composition.md](guides/innerblocks-composition.md) section "Pattern 1: Parent-Child blocks (Recommended)"
+See [guides/innerblocks-composition.md](../guides/innerblocks-composition.md) section "Pattern 1: Parent-Child blocks (Recommended)"
 
 ---
 
