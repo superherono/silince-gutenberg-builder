@@ -642,7 +642,7 @@ export default function Edit({ attributes, setAttributes, context }) {
 - [ ] providesContext if child blocks depend on the parent
 
 ### After generation:
-- [ ] Offer to run `/silince-gutnebrg-builder:validate-block {name}` for validation
+- [ ] Offer to run `/silince-gutenberg-builder:validate-block {name}` for validation
 
 ---
 

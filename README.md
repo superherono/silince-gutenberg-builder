@@ -1,8 +1,8 @@
 # Silince Gutenberg Builder
 
-A Claude Code plugin that turns Figma designs, HTML and SCSS, or React pages into native Gutenberg blocks. Eight agents analyse, generate, validate and fix each block against one written standard: InnerBlocks first, Context API for parent and child blocks, BEM, CSS custom properties from theme.json, escaped render.php. Pages convert section by section with a pause after each, and progress survives a chat restart.
+**Figma to Gutenberg, HTML to Gutenberg, React to Gutenberg — with AI.** A Claude Code plugin that turns a Figma design, an HTML/CSS page or a React page into native WordPress Gutenberg blocks: `block.json`, editor script, `save.js` or `render.php`, and SCSS built on your `theme.json` values. It checks every block it writes and fixes what fails before the block is accepted.
 
-The plugin id is `silince-gutnebrg-builder` (an old typo, kept so existing installs and settings keep working), so commands start with `/silince-gutnebrg-builder:`. Why and how it was built: [docs/case-study.md](docs/case-study.md).
+Under the hood eight agents analyse, generate, validate and fix each block against one written standard: InnerBlocks first, Context API for parent and child blocks, BEM, CSS custom properties from theme.json, escaped render.php. Pages convert section by section with a pause after each, and progress survives a chat restart. Why and how it was built: [docs/case-study.md](docs/case-study.md).
 
 ## Why
 
@@ -24,12 +24,24 @@ From GitHub, inside Claude Code:
 
 ```
 /plugin marketplace add superherono/silince-gutenberg-builder
-/plugin install silince-gutnebrg-builder@silince-gutenberg-builder
+/plugin install silince-gutenberg-builder@silince-gutenberg-builder
 ```
 
 Or load a local clone for one session: `claude --plugin-dir ./silince-gutenberg-builder`.
 
-Then add the project settings described in [Configuration](#configuration) and check the setup with `/silince-gutnebrg-builder:test`.
+Then add the project settings described in [Configuration](#configuration) and check the setup with `/silince-gutenberg-builder:test`.
+
+### Upgrading from 1.x
+
+Before 2.0.0 the plugin id was `silince-gutnebrg-builder` (a typo). Reinstall under the new id:
+
+```
+/plugin uninstall silince-gutnebrg-builder@silince-gutenberg-builder
+/plugin marketplace update silince-gutenberg-builder
+/plugin install silince-gutenberg-builder@silince-gutenberg-builder
+```
+
+Commands now start with `/silince-gutenberg-builder:`. Project settings under the old key `pluginSettings['silince-gutnebrg-builder']` keep working; rename the key when convenient.
 
 ## Quick Start
 
@@ -37,13 +49,13 @@ Three workflows depending on your input:
 
 ```bash
 # 1. One block from Figma URL or HTML path
-/silince-gutnebrg-builder:create-block <figma-url-or-html-path>
+/silince-gutenberg-builder:create-block <figma-url-or-html-path>
 
 # 2. One section from prepared HTML+SCSS
-/silince-gutnebrg-builder:convert-html <path-to-html> [<path-to-scss>]
+/silince-gutenberg-builder:convert-html <path-to-html> [<path-to-scss>]
 
 # 3. Whole React page from claude.ai/design — section by section, with persistent state
-/silince-gutnebrg-builder:convert-react-page https://claude.ai/design/<hash>
+/silince-gutenberg-builder:convert-react-page https://claude.ai/design/<hash>
 ```
 
 For typical projects use **#3** — it queues all sections, pauses for confirmation between each, and survives chat restarts via `--continue`.
@@ -128,7 +140,7 @@ Create `src/.claude/config.json` in your project:
 ```json
 {
 	"pluginSettings": {
-		"silince-gutnebrg-builder": {
+		"silince-gutenberg-builder": {
 			"namespace": "yourtheme",
 			"textdomain": "yourtheme",
 			"blocksDir": "./src/blocks",
@@ -385,7 +397,7 @@ The plugin itself was written with Claude Code. I write the architecture, the st
 
 ## Version
 
-- **Plugin:** 1.0.1
+- **Plugin:** 2.0.0
 - **Author:** Dmitrii Morozan
 - **Updated:** 2026-11-19
 

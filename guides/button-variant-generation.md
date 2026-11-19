@@ -179,7 +179,7 @@ Answer options:
 
 ## Finding the button block (discovery)
 
-Search for the button **inside `blocksDir`**, which is resolved from `pluginSettings['silince-gutnebrg-builder'].blocksDir` (default `./blocks`) relative to the **theme root** (the current directory). Order:
+Search for the button **inside `blocksDir`**, which is resolved from `pluginSettings['silince-gutenberg-builder'].blocksDir` (missing key → the pre-2.0.0 key `pluginSettings['silince-gutnebrg-builder']`; default `./blocks`) relative to the **theme root** (the current directory). Order:
 
 0. **Resolve `blocksDir`.** No key in config → default `./blocks`. Everything below is relative to it. ⚠️ If the button lives in `src/blocks/...` but `blocksDir` is left at the default `./blocks` — the search goes to the wrong place and the button "will not be found". `blocksDir` must point to the real blocks folder (e.g. `src/blocks`).
 1. **Explicit `block-name`** (argument) → look for `block.json` in order: `{blocksDir}/{name}/`, then `{blocksDir}/common/{name}/`, or the `dir` from the registry for the key `{name}`.

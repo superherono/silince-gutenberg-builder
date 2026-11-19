@@ -17,7 +17,7 @@ A guide to orchestrating agents via the Task tool for commands.
 ```json
 {
 	"pluginSettings": {
-		"silince-gutnebrg-builder": {
+		"silince-gutenberg-builder": {
 			"namespace": "acme",
 			"textdomain": "acme",
 			"blocksDir": "./blocks/",
@@ -56,7 +56,7 @@ A guide to orchestrating agents via the Task tool for commands.
    c) Create src/.claude/config.json:
       {
         "pluginSettings": {
-          "silince-gutnebrg-builder": {
+          "silince-gutenberg-builder": {
             "namespace": "{theme_name}",
             "textdomain": "{theme_name}",
             "blocksDir": "./blocks",
@@ -84,7 +84,8 @@ A guide to orchestrating agents via the Task tool for commands.
 3. IF THE FILE EXISTS:
    Read src/.claude/config.json
 
-4. Extract pluginSettings['silince-gutnebrg-builder']
+4. Extract pluginSettings['silince-gutenberg-builder']
+   (missing → fall back to pluginSettings['silince-gutnebrg-builder'], the plugin id before 2.0.0)
 
 5. Get the settings:
    - namespace: block prefix (for example: "acme")
@@ -141,7 +142,7 @@ Task({
 	description: 'Analyze design structure and extract specification',
 	model: 'haiku',
 	prompt: `
-You are the Analyzer agent from the silince-gutnebrg-builder plugin.
+You are the Analyzer agent from the silince-gutenberg-builder plugin.
 
 Read the instructions: agents/analyzer.md
 
@@ -194,7 +195,7 @@ Task({
 	description: 'Generate Gutenberg block code from specification',
 	model: 'sonnet',
 	prompt: `
-You are the Generator agent from the silince-gutnebrg-builder plugin.
+You are the Generator agent from the silince-gutenberg-builder plugin.
 
 Read the instructions: agents/generator.md
 
@@ -276,7 +277,7 @@ Task({
 	description: 'Validate block code for errors and best practices',
 	model: 'haiku',
 	prompt: `
-You are the Validator agent from the silince-gutnebrg-builder plugin.
+You are the Validator agent from the silince-gutenberg-builder plugin.
 
 Read the instructions: agents/validator.md
 
@@ -345,7 +346,7 @@ Task({
 	description: 'Automatically fix validation errors',
 	model: 'haiku',
 	prompt: `
-You are the Fixer agent from the silince-gutnebrg-builder plugin.
+You are the Fixer agent from the silince-gutenberg-builder plugin.
 
 Read the instructions: agents/fixer.md
 
@@ -559,13 +560,13 @@ Details:
 
 Action options:
 1. Automatic fix:
-   /silince-gutnebrg-builder:force-fix hero
+   /silince-gutenberg-builder:force-fix hero
 
 2. Show the detailed guide:
-   /silince-gutnebrg-builder:show-fix-guide hero
+   /silince-gutenberg-builder:show-fix-guide hero
 
 3. Fix manually and validate again:
-   /silince-gutnebrg-builder:validate-block hero
+   /silince-gutenberg-builder:validate-block hero
 ```
 
 ---

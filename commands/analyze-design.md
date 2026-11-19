@@ -22,11 +22,11 @@ Analyze a Figma design or HTML markup WITHOUT generating code.
 **Examples:**
 
 ```bash
-/silince-gutnebrg-builder:analyze-design https://figma.com/design/ABC123?node-id=1-1390
+/silince-gutenberg-builder:analyze-design https://figma.com/design/ABC123?node-id=1-1390
 
-/silince-gutnebrg-builder:analyze-design hero.html --output hero-spec.json
+/silince-gutenberg-builder:analyze-design hero.html --output hero-spec.json
 
-/silince-gutnebrg-builder:analyze-design hero.html hero.scss
+/silince-gutenberg-builder:analyze-design hero.html hero.scss
 ```
 
 ---
@@ -157,7 +157,7 @@ Use Figma MCP or ask for a screenshot
 📋 Next steps:
 
 1. Create a block based on the specification:
-   /silince-gutnebrg-builder:create-block [source] --name [blockName]
+   /silince-gutenberg-builder:create-block [source] --name [blockName]
 
 2. Study the specification in detail:
    [outputFile ? 'File saved: [outputFile]' : 'Use --output']

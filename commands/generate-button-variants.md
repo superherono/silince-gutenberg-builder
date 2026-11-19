@@ -19,9 +19,9 @@ Rebuilds the button variants (color: `primary`/`secondary`/… — the set is de
 **Examples:**
 
 ```bash
-/silince-gutnebrg-builder:generate-button-variants
-/silince-gutnebrg-builder:generate-button-variants default-button
-/silince-gutnebrg-builder:generate-button-variants default-button --dry-run
+/silince-gutenberg-builder:generate-button-variants
+/silince-gutenberg-builder:generate-button-variants default-button
+/silince-gutenberg-builder:generate-button-variants default-button --dry-run
 ```
 
 ---

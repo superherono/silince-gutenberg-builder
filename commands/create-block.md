@@ -32,7 +32,7 @@ Create a new Gutenberg block from a Figma design or HTML markup by orchestrating
 📖 **Using:** `${CLAUDE_PLUGIN_ROOT}/guides/command-orchestration.md#-1-config-reading-pattern`
 
 1. Read `src/.claude/config.json` in the project root
-2. Get `pluginSettings['silince-gutnebrg-builder'].blocksDir` (default: `./blocks`)
+2. Get `pluginSettings['silince-gutenberg-builder'].blocksDir` (missing key → the pre-2.0.0 key `pluginSettings['silince-gutnebrg-builder']`; default: `./blocks`)
 
 ### STEP 0.5: Pre-generation notes for the block (default)
 
@@ -116,7 +116,7 @@ const userPreGenNotes = <user text>;
 **Prompt:**
 
 ```
-You are the Generator agent from the silince-gutnebrg-builder plugin.
+You are the Generator agent from the silince-gutenberg-builder plugin.
 
 Read the instructions: agents/generator.md
 
@@ -239,7 +239,7 @@ const userNotes = userConfirmation;
 **Prompt:**
 
 ```
-You are the Generator agent from the silince-gutnebrg-builder plugin.
+You are the Generator agent from the silince-gutenberg-builder plugin.
 
 Read the instructions: agents/generator.md
 
@@ -395,7 +395,7 @@ Return a report on the created files [IF autonomous: + a section "🤖 Auto-deci
 [insert the last validationResult]
 
 💡 **Recommendations:**
-   Use /silince-gutnebrg-builder:force-fix --block=[blockName]
+   Use /silince-gutenberg-builder:force-fix --block=[blockName]
 ```
 
 ---
