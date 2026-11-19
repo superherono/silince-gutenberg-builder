@@ -8,9 +8,10 @@
  *   - post-card-{post_type}.php  when that file exists in this folder
  *   - post-card.php              default fallback (and for `post`)
  *
- * Post-type agnostic: renders whatever post it is given (Query Loop context,
- * the main loop, or a manually selected post). Template resolution is relative
- * to __DIR__, so the module stays portable when moved within the theme/plugin.
+ * Post-type agnostic: renders whatever post it is given (a manually selected
+ * entry first; otherwise Query Loop context or the main loop). Template
+ * resolution is relative to __DIR__, so the module stays portable when moved
+ * within the theme/plugin.
  *
  * The root gets a `post-card--{post_type}` modifier class so per-type views can
  * be styled independently without touching this router.
@@ -28,21 +29,22 @@ if (! defined('ABSPATH')) {
 $is_editor_preview = defined('REST_REQUEST') && REST_REQUEST;
 
 // Resolve post id (no post-type gate — the card is post-type-agnostic).
-// Editor: trust the explicit `postId` attribute (edit.js resolves Query Loop
-// context into it). Front-end: the loop is authoritative, then block context,
-// then the manual attribute.
+// The explicitly selected entry (`postId` attribute) wins everywhere: on a
+// page or post, block context and the main loop both point at the page being
+// viewed, never at the selected entry. Front-end fallbacks for a card without
+// a selection: block context (a Query Loop item gets its post here), then the
+// main loop. Editor: the attribute alone (edit.js resolves Query Loop context
+// into it).
 $post_id = 0;
 
-if ($is_editor_preview) {
-	if (! empty($attributes['postId'])) {
-		$post_id = absint($attributes['postId']);
-	}
-} elseif (in_the_loop()) {
-	$post_id = get_the_ID();
-} elseif (! empty($block->context['postId'])) {
-	$post_id = absint($block->context['postId']);
-} elseif (! empty($attributes['postId'])) {
+if (! empty($attributes['postId'])) {
 	$post_id = absint($attributes['postId']);
+} elseif (! $is_editor_preview) {
+	if (! empty($block->context['postId'])) {
+		$post_id = absint($block->context['postId']);
+	} elseif (in_the_loop()) {
+		$post_id = get_the_ID();
+	}
 }
 
 if (! $post_id) {
