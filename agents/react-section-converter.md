@@ -1,3 +1,8 @@
+---
+name: react-section-converter
+description: Converts one React section from a claude.ai/design export into a complete set of Gutenberg block files, using the brand brief and the theme's theme.json. Used by /convert-react-page, one call per section.
+---
+
 # React Section Converter Agent
 
 Converts **one** React section (a component from a claude.ai/design HTML export) into a complete set of Gutenberg block files.

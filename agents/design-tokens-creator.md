@@ -1,3 +1,8 @@
+---
+name: design-tokens-creator
+description: Retired, do not use. Design tokens now come from the theme's theme.json; if called, it only explains that and creates no files.
+---
+
 # Design Tokens Creator Agent — ⚠️ RETIRED
 
 This agent is **retired** together with the `/create-design-tokens` command.

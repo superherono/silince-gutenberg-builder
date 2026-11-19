@@ -1,3 +1,8 @@
+---
+name: brand-brief-extractor
+description: Extracts the final design decisions from claude.ai/design chat transcripts into brand-brief.json, checking them against the exported HTML. Used by /convert-react-page after the handoff bundle is unpacked.
+---
+
 # Brand Brief Extractor Agent
 
 Extracts final design decisions from the chat transcripts of a handoff bundle (claude.ai/design).
